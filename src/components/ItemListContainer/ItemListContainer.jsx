@@ -1,31 +1,56 @@
-import { useState, useEffect } from "react";
-import { getProducts, getProductByBrand } from "../../asyncMock.jsx";
+import React from "react";
+import { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
+import arrayProductos from "../../productos.jsx"
 import { useParams } from "react-router-dom";
 
-const ItemListContainer = ({ greeting }) => {
+const fetchItems = () => {
+   return new Promise((resolve) => {
+      setTimeout(() => {
+         resolve(arrayProductos)
+      }, 2000)
+   })
+};
 
-   const [products, setProducts] = useState([])
+const ItemListContainer = () => {
+   const [items, setItems] = useState([]);
+   const [loading, setLoading] = useState(true);
+   const { categoryId } = useParams();
 
-   const { categoryId } = useParams()
+   const Loading = () => {
+      return (
+         <div className="container my-5">
+            <div className="row">
+               <div className="col text-center">
+                  <div className="spinner-grow text-secondary" role="status">
+                     <span className="visually-hidden">Loading...</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      )
+
+   }
 
    useEffect(() => {
-      const asyncFunc = categoryId ? getProductByBrand : getProducts
+      const fetchData = async () => {
+         const data = await fetchItems();
+         setItems(categoryId ? data.filter(item => item.category == categoryId) : data);
+         setLoading(false);
+      };
 
-      asyncFunc(categoryId)
-         .then(response => {
-            setProducts(response)
-         })
-         .catch(error => {
-            console.error(error)
-         })
-   }, [categoryId])
+      fetchData();
+   }, [categoryId]);
 
    return (
-      <div><h1>{greeting}</h1>
-         <ItemList products={products} />
+      <div className="container my-5">
+         <div className="row">
+            {
+               loading ? <Loading /> : <ItemList items={items} />
+            }
+         </div>
       </div>
    )
-}
+};
 
 export default ItemListContainer;

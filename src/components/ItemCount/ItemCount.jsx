@@ -1,32 +1,45 @@
 import { useState } from "react";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-    const [count, setCount] = useState(initial);
+const ItemCount = ({ stock }) => {
+    const [contador, setContador] = useState(1);
+    const [itemStock, setItemStock] = useState(stock);
 
-    const handleIncrement = () => {
-        if (count < stock) {
-            setCount(count + 1);
+    const incrementar = () => {
+        if (contador < itemStock) {
+            setContador(contador + 1);
         }
     }
 
-    const handleDecrement = () => {
-        if (count > 1) {
-            setCount(count - 1);
+    const decrementar = () => {
+        if (contador > 1) {
+            setContador(contador - 1);
         }
     }
 
-    const handleAddToCart = () => {
-        if (count > 0 && count <= stock) {
-            onAdd(count)
+    const onAdd = () => {
+        if (contador <= itemStock) {
+            setItemStock(itemStock - contador);
+            setContador(1);
+            console.log("Agregaste " + contador + " productos al Carrito.");
         }
     }
 
     return (
-        <div>
-            <button onClick={handleDecrement}>-</button>
-            <span className="contador">{count}</span>
-            <button onClick={handleIncrement}>+</button>
-            <button onClick={handleAddToCart}>Agregar al carrito</button>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="btn-group" role="group">
+                        <button type="button" className="btn bg-light" onClick={decrementar}>-</button>
+                        <button type="button" className="btn bg-light">{contador}</button>
+                        <button type="button" className="btn bg-light" onClick={incrementar}>+</button>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-4">
+                    {itemStock > 1 ? <button type="button" className="btn bg-light" onClick={onAdd}>Agregar al Carrito</button> : <button type="button" className="btn bg-light"><b>No hay stock</b></button>}
+                </div>
+            </div>
         </div>
     )
 }

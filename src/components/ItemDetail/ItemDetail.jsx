@@ -1,17 +1,21 @@
 import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({ modelo, precio, img }) => {
-
+const ItemDetail = ({ item }) => {
     return (
-        <div className="item-card">
-            <img src={img} alt={modelo} className="item-image" />
-            <div className="item-details">
-                <h3 className="item_model">{modelo}</h3>
-                <p className="item-price">Precio: ${precio}</p>
+        <div className="container my-5">
+            <div className="row">
+                <div className="col-md-4">
+                    <img src={item.imageUrl} alt={item.name} className="img-fluid" />
+                </div>
+                <div className="col-md-8">
+                    <h1>{item.name}</h1>
+                    <p className="item-price"><b>${item.price}</b></p>
+                    <p>{item.description}</p>
+                    <ItemCount stock={item.stock} />
+                </div>
             </div>
-            <div><ItemCount stock={10} initial={1} onAdd={(count) => console.log('Cantidad agregada: ', count)} /></div>
         </div>
     )
-}
+};
 
 export default ItemDetail;

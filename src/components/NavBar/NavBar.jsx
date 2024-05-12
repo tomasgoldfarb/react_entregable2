@@ -1,29 +1,36 @@
 //import "./navbar.css";
-import logo from '../../assets/logo_navbar.png'
+import logo from '../../assets/images/logo_navbar.png'
 import CartWidget from '../CartWidget/CartWidget';
 import { NavLink, Link } from 'react-router-dom';
 
-const NavBar = () => {
+function NavBar() {
     return (
-        <nav className="navbar navbar-expand-md bg-body-tertiary" data-bs-theme="dark">
-            <div className="container-fluid">
-                <img src={logo} width="70" height="30" className="d-inline-block align-text-top" alt="logo de Syncro" />
+        <div className="container">
+            <div className="row my-3">
+                <div className="col text-center">
+                    <Link to={"/"}>
+                        <img src={logo} alt="logo de Syncro" width="70" height="30" />
+                    </Link>
+                </div>
             </div>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <Link className="nav-link active" to='/'>
-                    <p>Home</p>
-                </Link>
-                <NavLink to={`/category/ainner`} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Paletas Ainner</NavLink>
-                <NavLink to={`/category/snauwaert`} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Paletas Snauwaert</NavLink>
+            <div className="row">
+                <div className="col"></div>
+                <div className="col">
+                    <ul className="nav justify-content-center">
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-secondary" to={"/category/ainner"}>Paletas Ainner</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-secondary" to={"/category/snauwaert"}>Paletas Snauwaert</NavLink>
+                        </li>
+                    </ul>
+                </div>
+                <div className="col text-end">
+                    <CartWidget />
+                </div>
             </div>
-            <CartWidget />
-        </nav >
-    )
+        </div>
+    );
 }
 
 export default NavBar;

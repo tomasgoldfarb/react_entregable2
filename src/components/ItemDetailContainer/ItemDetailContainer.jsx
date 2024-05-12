@@ -1,28 +1,52 @@
 import { useState, useEffect } from "react";
-import { getProductById } from "../../asyncMock.jsx";
 import ItemDetail from "../ItemDetail/ItemDetail.jsx";
+import arrayProductos from "../../productos.jsx"
 import { useParams } from "react-router-dom";
 
+const fetchItems = () => {
+   return new Promise((resolve) => {
+      setTimeout(() => {
+         resolve(arrayProductos);
+      }, 2000)
+   })
+};
+
+const Loading = () => {
+   return (
+      <div className="container my-5">
+         <div className="row">
+            <div className="col text-center">
+               <div className="spinner-grow text-secondary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   )
+
+}
+
 const ItemDetailContainer = () => {
-
-   const [product, setProduct] = useState(null)
-
-   const {itemId} = useParams()
+   const [item, setItem] = useState({});
+   const [loading, setLoading] = useState(true);
+   const { id } = useParams();
 
    useEffect(() => {
-      getProductById(itemId)
-         .then(response => {
-            setProduct(response)
-         })
-         .catch(error => {
-            console.error(error)
-         })
-   }, [itemId])
+      const fetchData = async () => {
+         const data = await fetchItems();
+         setItem(id ? data.find(item => item.id == id) : {});
+         setLoading(false);
+      };
+
+      fetchData();
+   }, [id]);
 
    return (
-
-      <ItemDetail {...product} />
-
+      <>
+         {
+            loading ? <Loading /> : <ItemDetail item={item} />
+         }
+      </>
    )
 }
 
