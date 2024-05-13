@@ -8,11 +8,7 @@
 body {
     background-color: #253031;
 }
-
-/* nav {
-    margin-bottom: 50px;
-} */
-
+/*
 nav li {
     display: inline-block;
     padding: 10px 0;
@@ -29,15 +25,12 @@ nav ul li a {
     background-color: black !important;
 }
 
-/* main {
-    height: calc(100vh - 100px);
-} */
-
 h2 {
-    
+
     font-family: 'Ubuntu', sans-serif;
     color: white;
 }
+
 h3 {
     color: white;
     font-family: 'Ubuntu', sans-serif;
@@ -88,23 +81,14 @@ img.productos_img {
     padding-bottom: 10px;
 }
 
-
-/* footer p {
-    display: inline;
-    font-family: 'Ubuntu', sans-serif;
-} */
-
-/* footer a {
-    float: right;
-} */
 .redes {
     color: #333;
     font-size: 40px;
     letter-spacing: 10px;
-}
+} */
 
 /* estilos para contact.html */
-#formContainer {
+/* #formContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,31 +98,34 @@ img.productos_img {
     min-height: 600px;
 
 }
+
 form {
     display: flex;
     flex-direction: column;
     width: 60vh;
-    max-width: 500px;  
+    max-width: 500px;
     min-width: 300px;
     margin: 0 auto;
-       margin-bottom: 50px;
-    }
+    margin-bottom: 50px;
+}
 
-input{
+input {
     min-height: 3em;
     margin-bottom: 25px;
     border-radius: 5px;
     border: none;
     transition: background-color 0.5s, box-shadow 0.5s;
 }
-.formfield:hover{
+
+.formfield:hover {
     background-color: #253031;
-   
+
     box-shadow: 0 0 5px #0FF4C6;
     color: white;
 
 }
-.formfield:focus{
+
+.formfield:focus {
     background-color: #253031;
     outline: 0 none;
     box-shadow: 0 0 5px #0FF4C6;
@@ -146,7 +133,7 @@ input{
 
 }
 
-textarea{
+textarea {
     border-radius: 5px;
     border: none;
     margin-bottom: 50px;
@@ -155,24 +142,24 @@ textarea{
 
 
 
-label{
+label {
     color: white;
     font-family: 'Ubuntu', sans-serif;
     font-size: 14pt;
-        
-}
+
+} */
 
 /* estilos para index.html */
-.home {
+/* .home {
     height: 400px;
     background-image: url(../img/fondo_index.jpg);
     background-size: cover;
     background-position: center;
 }
-
+ */
 
 /* estilos para products.html */
-.paleta {
+/* .paleta {
     border: #333 solid 1px;
     background-color: white;
 }
@@ -181,8 +168,8 @@ label{
     transition: all 0.9s;
     filter: grayscale(100%)
 }
-
-.contador {
+ */
+/* .contador {
     font-family: 'Ubuntu', sans-serif;
     margin: 0px;
     color: white;
@@ -192,4 +179,4 @@ label{
     font-family: 'Ubuntu', sans-serif;
     margin: 0px;
     color: white;
-}
+} */
